@@ -7,6 +7,7 @@ const cors = require('cors')
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
+const artworkRoutes = require('./app/routes/artwork_routes')
 
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
@@ -40,7 +41,7 @@ const app = express()
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:4741' }))
 
 // define port for API to run on
 const port = process.env.PORT || 4741
@@ -71,6 +72,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
+app.use(artworkRoutes)
 
 // run API on designated port (4741 in this case)
 app.listen(port, () => {
